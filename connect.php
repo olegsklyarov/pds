@@ -67,4 +67,19 @@ class Connection
     {
         $this->mysqli->query($query) or die("MySQL error during UPDATE: {$this->mysqli->error}");
     }
+
+
+    /**
+     * @param string $query
+     */
+    public function multi_query(string $query)
+    {
+        if ($this->mysqli->multi_query($query)) {
+            do {
+                if ($result = $this->mysqli->store_result()) {
+                    $result->free();
+                }
+            } while ($this->mysqli->more_results() && $this->mysqli->next_result());
+        }
+    }
 }

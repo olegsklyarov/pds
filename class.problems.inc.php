@@ -17,7 +17,7 @@ class Problems
 {
     private function mysqlselect($str)
     {
-        return Connection::getInstance()->select(sql_query_table($str, Constants::DATABASE_TABLE_PROBLEMS));
+        return Connection::getInstance()->select(sql_query_table($str, Constants::DATABASE_TABLE_PROBLEM));
     }
 
 
@@ -25,7 +25,7 @@ class Problems
     {
         Connection::getInstance()->update(sql_query_table(
             $str,
-            Constants::DATABASE_TABLE_PROBLEMS));
+            Constants::DATABASE_TABLE_PROBLEM));
     }
 
 
@@ -57,7 +57,7 @@ class Problems
 
     public function get_team($id)
     {
-        $table = Constants::DATABASE_TABLE_STUDENTS;
+        $table = Constants::DATABASE_TABLE_STUDENT;
 
         return Connection::getInstance()->select("SELECT * FROM $table WHERE id = '$id' ORDER BY F");
     }

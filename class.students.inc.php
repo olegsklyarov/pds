@@ -25,7 +25,7 @@ class Students
     {
         return Connection::getInstance()->select(sql_query_table(
             $str,
-            Constants::DATABASE_TABLE_STUDENTS));
+            Constants::DATABASE_TABLE_STUDENT));
     }
 
     public function get_all()
@@ -47,7 +47,7 @@ class Students
     {
         Connection::getInstance()->update(sql_query_table(
             $str,
-            Constants::DATABASE_TABLE_STUDENTS));
+            Constants::DATABASE_TABLE_STUDENT));
     }
 
 

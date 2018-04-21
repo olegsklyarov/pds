@@ -6,8 +6,8 @@ class Constants
     const ENVIRONMENT_DEVELOPMENT = 'environment_development';
     const ENVIRONMENT_PRODUCTION = 'environment_production';
 
-    const DATABASE_TABLE_STUDENTS = 'student';
-    const DATABASE_TABLE_PROBLEMS = 'problem';
+    const DATABASE_TABLE_STUDENT = 'student';
+    const DATABASE_TABLE_PROBLEM = 'problem';
     const DATABASE_TABLE_ADMIN = 'admin';
 
     const DATABASE_PROPERTY_HOST = 'database_property_host';
