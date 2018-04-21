@@ -1,0 +1,45 @@
+h2
+{
+	font-family: Calibri, sans-serif;
+}
+
+a
+{
+	font-family: Calibri, sans-serif;
+	font-size: 10pt;
+}
+
+table
+{
+	font-family: Calibri, sans-serif;
+	font-size: 10pt;
+}
+
+thead
+{
+	font-weight: bolder;
+	line-height: 2;
+	background-color: #d0d0dd;
+}
+
+tr.x
+{
+	background-color: #f0f0ff;
+}
+
+tr.y
+{
+	background-color: #e0e0ee;
+}
+
+p
+{
+	font-family: Calibri, sans-serif;
+	font-size: 10pt;
+	margin-left: 10%;
+}
+
+b
+{
+	line-height: 2.5;
+}

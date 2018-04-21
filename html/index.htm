@@ -1,0 +1,123 @@
+<!-- INCLUDE BLOCK : head -->
+
+<!-- START BLOCK : unknown_user -->
+<center>
+<h3>Вход</h3>
+<form action="./index.php" method="POST">
+	<table border="0" cellpadding="5" cellspacing="0">
+	<tr>
+		<td>Имя:</td>
+		<td>
+			<select name="{id}">
+				<!-- START BLOCK : next_mail -->
+				<option value="{id_val}">{Mail}</option>
+				<!-- END BLOCK : next_mail -->
+			</select>
+		</td>
+	</tr><tr>
+		<td>Пароль:</td>
+		<td><input type="password" name="Password" maxlength="8"></td>
+	</tr><tr>
+		<td colspan="2" align="center"><input type="submit"></td>
+	</tr>
+	</table>
+	<input type="hidden" name="login">
+</form>
+<b>Внимание:</b> если Вы не нашли себя в списке, перейдите на страницу <a href="./reg.php">регистрации</a>.
+</center>
+<!-- END BLOCK : unknown_user -->
+
+
+<!-- START BLOCK : logged -->
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr valign="top">
+	<td width="200" align="left">
+
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr valign="top">
+		<td bgcolor="#cccccc" width="100%">
+
+
+		<table width="100%" cellpadding="7" cellspacing="1" border="0" style="font-size: 10pt; font-family: tahoma;">
+		<tr>
+			<td bgcolor="white" colspan="2" align="center"><b>Project Distribution System</b></td>
+		</tr><tr>
+			<td bgcolor="white">Имя</td>
+			<td bgcolor="white">{username}</td>
+		</tr><tr>
+			<td bgcolor="white">Проект</td>
+			<td bgcolor="white">{project}</td>
+		</tr><tr>
+			<td bgcolor="white">Статус</td>
+			<td bgcolor="white">
+				<!-- START BLOCK : success -->
+				<font color="green">Зачтено</font>
+				<!-- END BLOCK : success -->
+				<!-- START BLOCK : not_success -->
+				<font color="#777777">Не сдан</font>
+				<!-- END BLOCK : not_success -->
+			</td>
+		</tr><tr>
+			<td bgcolor="white" colspan="2" align="center"><div style="font-size: 9pt;"><a href="{url_exit}">Выйти</a></div></td>
+		</tr>
+		</table>
+		</td></tr>
+		</table>
+	</td>
+	<!-- START BLOCK : more -->
+	<td width="*" align="left">
+		<table width="98%" align="right" cellpadding="0" cellspacing="0" border="0" style="font-size: 10pt; font-family: tahoma;">
+		<tr><td>
+			<b>{Caption}</b><br><br>
+
+			<b>Короткое описание</b>
+			<p>{FAQ}</p>
+
+			<b>Полное описание</b>
+			<p>{FullDiscription}</p>
+
+			<b>Полная команда: </b>{TeamSize}<br>
+
+			<b>Выполняют:</b>{team}<br>
+
+			<b>Вакансии: </b>{need}<br>
+
+			<!-- START BLOCK : join -->
+			<p><a href="{url_join}">Выбрать</a></p>
+			<!-- END BLOCK : join -->
+
+			<p><a href="{url_back}">Назад</a></p>
+		</td>
+		</tr>
+		</table>
+	</td>
+	<!-- END BLOCK : more -->
+
+	<!-- START BLOCK : table -->
+	<td width="*" align="left">
+		<table width="98%" align="right" cellpadding="0" cellspacing="0" border="0">
+		<tr><td bgcolor="#cccccc" width="100%">
+			<table width="100%" cellpadding="2" cellspacing="1" border="0" style="font-size: 9pt; font-family: tahoma;">
+			<!-- START BLOCK : row -->
+			<tr>
+				<td width="70%" bgcolor="white">{Caption}</td>
+				<td width="*" bgcolor="white" align="center"><div style="font-size: 8pt; font-family: verdana;">Team size: {TeamSize}<br>Vacancy: {need}</div></td>
+				<td width="20%" bgcolor="white"><div style="font-size: 8pt; font-family: verdana;">Team:<br>{team}</div></td>
+			</tr><tr>
+				<td bgcolor="white" colspan="2"><br>{FAQ}</td><td bgcolor="white" colspan="1" align="center"><div style="font-size: 8pt; font-family: verdana;"><a href="{url_more}">more</a></div></td>
+			</tr>
+			<tr>
+				<td colspan="3" bgcolor="#f0f0f0"><br></td>
+			</tr>
+			<!-- END BLOCK : row  -->
+			</table>
+		</td></tr>
+		</table>
+	</td>
+	<!-- END BLOCK : table -->
+</tr>
+</table>
+<!-- END BLOCK : logged -->
+
+<!-- INCLUDE BLOCK : foot -->

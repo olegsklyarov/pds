@@ -1,0 +1,33 @@
+<!-- INCLUDE BLOCK : head -->
+
+
+<h3>Install Script</h3>
+
+
+<!-- START BLOCK : installed -->
+<h4>Project Distribution System installed successfully</h4>
+<br>
+Go to <a href="./admin.php">admin<a> section.
+<!-- END BLOCK : installed -->
+
+
+<!-- START BLOCK : install -->
+<h4>Admin information</h4>
+<form action="install.php" method="POST">
+	<table border="0" cellpadding="5" cellspacing="0">
+	<tr>
+		<td>Admin login:</td>
+		<td><input type="text" name="{admin_login}" maxlength="20"></td>
+	</tr><tr>
+		<td>Password:</td>
+		<td><input type="password" name="{admin_password}" maxlength="20"></td>
+    </tr><tr>
+		<td colspan="2" align="center"><input type="submit"></td>
+	</tr>
+	</table>
+	<input type="hidden" name="install">
+</form>
+<!-- END BLOCK : install -->
+
+
+<!-- INCLUDE BLOCK : foot -->

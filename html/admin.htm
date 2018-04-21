@@ -1,0 +1,213 @@
+<!-- INCLUDE BLOCK : head -->
+
+
+
+<!-- START BLOCK : unknown_user -->
+<h3>Вход в админку</h3>
+<form action="./admin.php" method="POST">
+	<table border="0" cellpadding="5" cellspacing="0">
+	<tr>
+		<td>Login</td>
+		<td><input type="text" name="login" maxlength="20"></td>
+	</tr><tr>
+		<td>Password</td>
+		<td><input type="password" name="password" maxlength="20"></td>
+	</tr><tr>
+		<td colspan="2" align="center"><input type="submit"></td>
+	</tr>
+	</table>
+	<input type="hidden" name="admin_login">
+</form>
+
+Goto main <a href="./">page</a>.
+<!-- END BLOCK : unknown_user -->
+
+
+
+<!-- START BLOCK : logged -->
+<h4>Admin login: {admin_login}</h4>
+
+<div align="center" style="font-size: 13pt; font-family: verdana;">
+<!-- START BLOCK : menu -->
+	<a href="{url}?{paramstr}">{caption}</a>
+<!-- END BLOCK : menu -->
+</div>
+<br>
+
+<!-- START BLOCK : students -->
+<div align="center" style="font-size: 11pt; font-family: verdana;">
+<!-- START BLOCK : menu_students -->
+	<a href="{url}?{paramstr}">{caption}</a>
+<!-- END BLOCK : menu_students -->
+</div>
+<br>
+
+
+<!-- START BLOCK : table_students -->
+<table align="center" width="80%" border="0" cellpadding="0" cellspacing="1">
+<!--thead>
+	<tr>
+		<td>No</td><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>Группа</td><td>Редактировать</td><td width="50">Зачет</td>
+	</tr>
+</thead-->
+<tbody>
+
+
+<!-- START BLOCK : edit_row -->
+<tr>
+		<form action="{script}" method="POST">
+			<td>&nbsp;</td>
+			<td><div style="font-size: 9pt;">Фамилия:</div><input type="text" name="{f}" value="{f_val}"></td>
+			<td><div style="font-size: 9pt;">Имя:</div><input type="text" name="{i}" value="{i_val}"></td>
+			<td><div style="font-size: 9pt;">Отчество:</div><input type="text" name="{o}" value="{o_val}"></td>
+			<td><div style="font-size: 9pt;">Группа:</div><input type="text" name="{g}" value="{g_val}"></td>
+			<td><div style="font-size: 9pt;">E-mail:</div><input type="text" name="{mail}" value="{mail_val}"></td>
+			<td colspan="3"><center><input type="submit"></center></td>
+			<input type="hidden" name="{post_name}">
+			<input type="hidden" name="{id}" value="{id_val}">
+		</form>
+	</td>
+</tr>
+<!-- END BLOCK : edit_row -->
+
+
+<!-- START BLOCK : row_students -->
+<tr class={class}>
+	<td>{no}</td><td>{final}</td><td>{f}</td><td>{i}</td><td>{o}</td><td>{g}</td><td>{edit_row}</td><td>{chpass}</td><td>{delete}</td>
+</tr>
+<!-- END BLOCK : row_students  -->
+
+
+</tbody>
+</table>
+
+<!-- END BLOCK : table_students -->
+
+
+<!-- START BLOCK : no_table_students -->
+<br>
+<center><i>No records</i></center>
+<!-- END BLOCK : no_table_students -->
+
+<!-- END BLOCK : students -->
+
+
+
+
+
+
+
+
+<!-- START BLOCK : problems -->
+
+
+
+<div align="center" style="font-size: 11pt; font-family: verdana;">
+<!-- START BLOCK : menu_problems -->
+	<a href="{url}?{paramstr}">{caption}</a>
+<!-- END BLOCK : menu_problems -->
+</div>
+<br>
+
+<!-- START BLOCK : add_edit -->
+	<form action="{script}" method="POST">
+		<table cellpadding="0" cellspacing="2" border="0" width="70%" align="center">
+		<tr>
+			<td><div style="font-size: 9pt;">Название:</div><input type="text" name="{caption}" value="{caption_val}" maxlength="255"></td>
+			<td><div style="font-size: 9pt;">Team Size:</div>
+				<select name="{teamsize}" size="1">
+					<option value="1" {selected1}>1</option>
+					<option value="2" {selected2}>2</option>
+					<option value="3" {selected3}>3</option>
+					<option value="4" {selected4}>4</option>
+					<option value="5" {selected5}>5</option>
+				</select>
+			</td>
+		</tr><tr>
+			<td colspan="2"><div style="font-size: 9pt;">Короткое описание:</div><textarea name="{faq}" wrap="vartual" cols="100" rows="5">{faq_val}</textarea></td>
+		</tr><tr>
+			<td colspan="2"><div style="font-size: 9pt;">Полное описание:</div><textarea name="{fulldiscription}" wrap="vartual" cols="100" rows="20">{fulldiscription_val}</textarea></td>
+		</tr><tr>
+			<td colspan="2" align="center"><br><input type="submit"></td>
+		</tr>
+		</table>
+		<input type="hidden" name="{post_name}">
+		<input type="hidden" name="{id}" value="{id_val}">
+	</form>
+<!-- END BLOCK : add_edit -->
+
+<!-- START BLOCK : table -->
+
+
+<table align="center" width="80%" border="1" cellpadding="0" cellspacing="0">
+<!-- START BLOCK : row -->
+<tr><td width="*">{no}</td><td width="90%">{Caption}</td><td width="5%" align="center">{TeamSize}</td></tr>
+<tr><td colspan="2"><br>{FAQ}</td><td align="center"><a href="{url_more}">more</a>&nbsp;<a href="{url_edit}">edit</a>&nbsp;<a href="{url_delete}">delete</a></td></tr>
+<!-- END BLOCK : row  -->
+</table>
+
+<!-- END BLOCK : table -->
+
+<!-- START BLOCK : more -->
+<table align="center" width="80%" border="1" cellpadding="0" cellspacing="0">
+<tr>
+	<td>{Caption}</td><td align="right">{TeamSize}</td>
+</tr>
+<tr>
+	<td colspan="2">{FAQ}</td>
+</tr>
+<tr>
+	<td colspan="2">{FullDiscription}</td>
+</tr>
+<tr>
+	<td colspan="2">Выполняют: {TeamMembers}</td>
+</tr>
+</table>
+<!-- END BLOCK : more -->
+
+<!-- START BLOCK : no_table -->
+<br>
+<center><i>No records</i></center>
+<!-- END BLOCK : no_table -->
+
+
+<!-- END BLOCK : problems -->
+
+
+
+
+
+<!-- START BLOCK : edit_admin -->
+<center>
+<h3>Редактирование администратора</h3>
+
+<form action="{script}" method="POST">
+    <table border="0" cellpadding="5" cellspacing="0">
+    <tr>
+        <td>Old password</td>
+        <td><input type="password" name="oldpassword" maxlength="20"></td>
+    </tr><tr>
+        <td>New login</td>
+        <td><input type="text" name="newlogin" maxlength="20"></td>
+    </tr><tr>
+        <td>New password</td>
+        <td><input type="password" name="newpassword" maxlength="20"></td>
+    </tr><tr>
+        <td>Confirm password</td>
+        <td><input type="password" name="confirmpassword" maxlength="20"></td>
+    </tr><tr>
+        <td colspan="2" align="center"><input type="submit"></td>
+    </tr>
+    </table>
+    <input type="hidden" name="admin_edit">	
+</form>
+</center>
+<!-- END BLOCK : edit_admin -->
+
+
+
+<!-- END BLOCK : logged -->
+
+
+
+<!-- INCLUDE BLOCK : foot -->
