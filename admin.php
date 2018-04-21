@@ -1,4 +1,5 @@
 <?php
+
 require_once "constants.php";
 
 if (!Constants::isProductionEnvironment()) {
@@ -63,7 +64,7 @@ if (isset($_SESSION['admin'])) {
             if (strcmp(md5($_POST['oldpassword']), $GLOBALS['md5_admin_password']) == 0 && strcmp($_POST['newpassword'],
                     $_POST['confirmpassword']) == 0) {
                 Connection::getInstance()->update(sql_query_table(
-                    "UPDATE %s SET Login = '" . md5($_POST['newlogin']) . "', Password = '" . md5($_POST['newpassword']) . "' WHERE id=1 LIMIT 1",
+                    "UPDATE %s SET Login = '" . md5($_POST['newlogin']) . "', PASSWORD = '" . md5($_POST['newpassword']) . "' WHERE id=1 LIMIT 1",
                     Constants::DATABASE_TABLE_ADMIN));
                 redirect($_SERVER['SCRIPT_NAME'] . "?logout", "Администратор изменен");
             } else {
