@@ -1,7 +1,7 @@
 <?php
-require_once "consts.php";
+require_once "constants.php";
 
-if(!on_server) {
+if(!Constants::isProductionEnvironment()) {
 	ini_set("session.use_trans_sid", true);
 	ini_set("session.use_cookies", true);
 }
@@ -93,7 +93,7 @@ if( isset($_SESSION['logged']) )
 					$tpl->newBlock("more");
 					$tpl->assign("Caption", $cur_problem['Caption']);
 					$tpl->assign("FAQ", $cur_problem['FAQ']);
-					$tpl->assign("FullDiscription", $cur_problem['FullDiscription']);
+					$tpl->assign("FullDescription", $cur_problem['FullDescription']);
 
 					$tpl->assign("TeamSize", $cur_problem['TeamSize']);
 

@@ -1,25 +1,70 @@
 <?php
-	require_once "consts.php";
+require_once "constants.php";
 
-	$host="localhost";
 
-	if(on_server)
-	{
-		$user="task_select";
-		$pass="hy2md12j";
-		$db="task_select";
-	}
-	else
-	{
-		$user="root";
-		$pass="";
-		$db="task_select";
-	}
+class Connection
+{
+    /** @var Connection */
+    private static $instance;
 
-	$GLOBALS['students_table'] = "students";
-	$GLOBALS['problems_table'] = "problems";
-	$GLOBALS['admin_table'] = "admin";
+    /** @var mysqli */
+    private $mysqli;
 
-	mysql_connect($host,$user,$pass) or die("Could not connect: ". mysql_error());
-	mysql_select_db($db) or die("Could not connect: ". mysql_error());
-?>
+    private function __construct()
+    {
+        $this->mysqli = new mysqli(
+            Constants::getDatabaseHost(),
+            Constants::getDatabaseUser(),
+            Constants::getDatabasePassword(),
+            Constants::getDatabaseName()
+        );
+
+        if ($this->mysqli->connect_error) {
+            die("Could not connect: {$this->mysqli->connect_error}");
+        }
+
+        if (!$this->mysqli->set_charset("utf8")) {
+            die("Failed to set charset: {$this->mysqli->error}");
+        }
+    }
+
+    /**
+     * @return Connection
+     */
+    public static function getInstance()
+    {
+        if (!self::$instance) {
+            self::$instance = new Connection();
+        }
+
+        return self::$instance;
+    }
+
+
+    /**
+     * @param string $query
+     *
+     * @return array
+     */
+    public function select(string $query)
+    {
+        /** @var mysqli_result $result */
+        $result = $this->mysqli->query($query) or die("MySQL error during SELECT: {$this->mysqli->error}");
+        $data = [];
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        $result->close();
+
+        return $data;
+    }
+
+
+    /**
+     * @param string $query
+     */
+    public function update(string $query)
+    {
+        $this->mysqli->query($query) or die("MySQL error during UPDATE: {$this->mysqli->error}");
+    }
+}

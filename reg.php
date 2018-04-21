@@ -1,5 +1,5 @@
 <?php
-require_once "./consts.php";
+require_once "./constants.php";
 require_once "./func.php";
 require_once "./class.TemplatePower.inc.php";
 require_once "./class.students.inc.php";
