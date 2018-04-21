@@ -7,6 +7,7 @@ if (!Constants::isProductionEnvironment()) {
     ini_set("session.use_cookies", true);
 }
 
+
 require_once "func.php";
 require_once "./class.TemplatePower.inc.php";
 
