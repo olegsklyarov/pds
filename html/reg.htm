@@ -4,54 +4,66 @@
 <br>
 
 <p>
-<b>Уважаемые студенты!</b><br>
-<!--Используем для регистрации в базе данных эту форму. Регистрируем своих товарищей, чтобы как можно быстрее заполнить список.<br>
-Пароли для доступа к выбору задач будут высланы <font color="red">11 ноября 2008</font>.<br-->
-После регистрации Вам автоматически высылается письмо с паролем.
-По всем техническим вопросам обращаться <a href="mailto:oleg.skljarov@gmail.com">сюда</a>.<br>
-<b>Олег Скляров</b>.
+    <b>Уважаемые студенты!</b><br>
+    <!--Используем для регистрации в базе данных эту форму. Регистрируем своих товарищей, чтобы как можно быстрее заполнить список.<br>
+    Пароли для доступа к выбору задач будут высланы <font color="red">11 ноября 2008</font>.<br-->
+    После регистрации Вам автоматически высылается письмо с паролем.
+    По всем техническим вопросам обращаться <a href="mailto:oleg.skljarov@gmail.com">сюда</a>.<br>
+    <b>Олег Скляров</b>.
 </p>
 
 <center>
-	<a href="./reg.php?add">Добавить студента</a>
-	<br><br>
+    <a href="./reg.php?add">Добавить студента</a>
+    <br><br>
 </center>
 <!-- START BLOCK : table_students -->
 <table align="center" width="80%" border="0" cellpadding="0" cellspacing="1">
-<thead>
-	<tr>
-		<td width="20">No</td><td>Фамилия</td><td>Имя</td><td>Отчество</td><td>Группа</td><td>e-mail</td>
-	</tr>
-</thead>
-<tbody>
+    <thead>
+    <tr>
+        <td width="20">No</td>
+        <td>Фамилия</td>
+        <td>Имя</td>
+        <td>Отчество</td>
+        <td>Группа</td>
+        <td>e-mail</td>
+    </tr>
+    </thead>
+    <tbody>
 
 
-<!-- START BLOCK : edit_row -->
-<tr>
-		<form action="{script}" method="POST">
-			<td align="center">0</td>
-			<td><input type="text" name="{F}" value="{F_val}"></td>
-			<td><input type="text" name="{I}" value="{I_val}"></td>
-			<td><input type="text" name="{O}" value="{O_val}"></td>
-			<td><input type="text" name="{G}" value="{G_val}"></td>
-			<td><input type="text" name="{Mail}" value="{Mail_val}"></td>
-			<td colspan="2"><center><input type="submit"></center></td>
-			<input type="hidden" name="{id}" value="{id_val}">
-			<input type="hidden" name="{post_name}">
-		</form>
-	</td>
-</tr>
-<!-- END BLOCK : edit_row -->
+    <!-- START BLOCK : edit_row -->
+    <tr>
+        <form action="{script}" method="POST">
+            <td align="center">0</td>
+            <td><input type="text" name="{F}" value="{F_val}"></td>
+            <td><input type="text" name="{I}" value="{I_val}"></td>
+            <td><input type="text" name="{O}" value="{O_val}"></td>
+            <td><input type="text" name="{G}" value="{G_val}"></td>
+            <td><input type="text" name="{Mail}" value="{Mail_val}"></td>
+            <td colspan="2">
+                <center><input type="submit"></center>
+            </td>
+            <input type="hidden" name="{id}" value="{id_val}">
+            <input type="hidden" name="{post_name}">
+        </form>
+        </td>
+    </tr>
+    <!-- END BLOCK : edit_row -->
 
 
-<!-- START BLOCK : row_students -->
-<tr class="{class}">
-	<td align="center">{no}</td><td>{F}</td><td>{I}</td><td>{O}</td><td>{G}</td><td>{Mail}</td>
-</tr>
-<!-- END BLOCK : row_students  -->
+    <!-- START BLOCK : row_students -->
+    <tr class="{class}">
+        <td align="center">{no}</td>
+        <td>{F}</td>
+        <td>{I}</td>
+        <td>{O}</td>
+        <td>{G}</td>
+        <td>{Mail}</td>
+    </tr>
+    <!-- END BLOCK : row_students  -->
 
 
-</tbody>
+    </tbody>
 </table>
 <!-- END BLOCK : table_students -->
 
@@ -60,7 +72,7 @@
 <center><i>No records</i></center>
 <!-- END BLOCK : no_table_students -->
 <center>
-	<br>
-	<a href="./reg.php?add">Добавить студента</a>
+    <br>
+    <a href="./reg.php?add">Добавить студента</a>
 </center>
 <!-- INCLUDE BLOCK : foot -->
