@@ -59,7 +59,7 @@ class Problems
     {
         $table = Constants::DATABASE_TABLE_STUDENT;
 
-        return Connection::getInstance()->select("SELECT * FROM $table WHERE id = '$id' ORDER BY F");
+        return Connection::getInstance()->select("SELECT * FROM $table WHERE Task_id = '$id' ORDER BY F");
     }
 
 

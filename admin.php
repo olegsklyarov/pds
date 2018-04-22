@@ -296,7 +296,7 @@ if (isset($_SESSION['admin'])) {
                     $team = $problems->get_team($_GET[problem_get_id]);
                     $teammembers = "";
                     foreach ($team as $i => $line) {
-                        $teammembers = $teammembers . $line['F'] . " " . $line['O'] . " " . $line['O'] . "<br>";
+                        $teammembers .= trim($line['F'] . " " . $line['I'] . " " . $line['O']) . "<br>";
                     }
                     $tpl->assign("TeamMembers", $teammembers);
                 } else {
