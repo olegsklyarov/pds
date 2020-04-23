@@ -1,0 +1,19 @@
+{
+  "name": "olegsklyarov/pds",
+  "description": "Project Distribution System",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Oleg Sklyarov",
+      "email": "oleg.sklyarov@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "require": {
+    "ext-mysqli": "*"
+  }
+}

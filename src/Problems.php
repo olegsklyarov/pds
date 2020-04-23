@@ -1,29 +1,18 @@
 <?php
 
-require_once 'constants.php';
-require_once 'connect.php';
-require_once 'func.php';
+namespace App;
 
-define("problem_get_problems", "problems");
-define("problem_get_add", "pga");
-define("problem_post_add", "ppa");
-define("problem_get_id", "pgi");
-define("problem_get_edit", "pge");
-define("problem_post_edit", "ppe");
-define("problem_get_delete", "pgd");
-
-
-class Problems
+final class Problems
 {
     private function mysqlselect($str)
     {
-        return Connection::getInstance()->select(sql_query_table($str, Constants::DATABASE_TABLE_PROBLEM));
+        return Connection::getInstance()->select(Utils::sql_query_table($str, Constants::DATABASE_TABLE_PROBLEM));
     }
 
 
     private function mysqlupdate($str)
     {
-        Connection::getInstance()->update(sql_query_table(
+        Connection::getInstance()->update(Utils::sql_query_table(
             $str,
             Constants::DATABASE_TABLE_PROBLEM));
     }

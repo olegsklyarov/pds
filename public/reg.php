@@ -1,12 +1,14 @@
 <?php
-require_once "./constants.php";
-require_once "./func.php";
-require_once "./class.TemplatePower.inc.php";
-require_once "./class.students.inc.php";
 
-$tpl = new TemplatePower("./html/reg.htm");
-$tpl->assignInclude("head", "./html/head_css.htm");
-$tpl->assignInclude("foot", "./html/foot.htm");
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use App\Students;
+use App\TemplatePower;
+use App\Utils;
+
+$tpl = new TemplatePower('reg.htm');
+$tpl->assignInclude("head", __DIR__ . '/../src/templates/head_css.htm');
+$tpl->assignInclude("foot", __DIR__ . '/../src/templates/foot.htm');
 $tpl->prepare();
 
 $students = new Students();
@@ -30,27 +32,27 @@ if (isset($_POST['add'])) {
     }
 
     if (empty($new['F']) || empty($new['I']) || empty($new['O']) || empty($new['G']) || empty($new['Mail'])) {
-        redirect($_SERVER['SCRIPT_NAME'], "Пустое поле");
+        Utils::redirect($_SERVER['SCRIPT_NAME'], "Пустое поле");
     }
-    if (!check_mail($new['Mail'])) {
-        redirect($_SERVER['SCRIPT_NAME'], "Некорректный e-mail");
+    if (!Utils::check_mail($new['Mail'])) {
+        Utils::redirect($_SERVER['SCRIPT_NAME'], "Некорректный e-mail");
     }
 
     if ($ok) {
-        $pass = gen_pass();
+        $pass = Utils::gen_pass();
         $students->add($new['F'], $new['I'], $new['O'], $new['G'], $new['Mail'], $pass);
         mail(
             $new['Mail'],
             "Your password to access PDS",
-            "Hello, " . translit($new['I']) . "!\nWelcome to Project Distribution System!\nYour password: $pass\n\n--\nwww.software.unn.ru:8888/ts/",
+            "Hello, " . Utils::translit($new['I']) . "!\nWelcome to Project Distribution System!\nYour password: $pass\n\n--\nwww.software.unn.ru:8888/ts/",
             join("\r\n", array(
                 "From: oleg.skljarov@gmail.com",
                 "Reply-To: oleg.skljarov@gmail.com"
             ))
         );
-        redirect($_SERVER['SCRIPT_NAME'], "Студент добавлен");
+        Utils::redirect($_SERVER['SCRIPT_NAME'], "Студент добавлен");
     } else {
-        redirect($_SERVER['SCRIPT_NAME'], "Ошибка: дублирование информации");
+        Utils::redirect($_SERVER['SCRIPT_NAME'], "Ошибка: дублирование информации");
     }
 }
 

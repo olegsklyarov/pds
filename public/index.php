@@ -1,34 +1,37 @@
 <?php
-require_once "constants.php";
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use App\Constants;
+use App\Problems;
+use App\TemplatePower;
+use App\Students;
+use App\Utils;
 
 if (!Constants::isProductionEnvironment()) {
     ini_set("session.use_trans_sid", true);
     ini_set("session.use_cookies", true);
 }
 
-require_once "./class.TemplatePower.inc.php";
-require_once "./func.php";
-
 session_start();
 if (isset($_GET['logout'])) {
     $_SESSION = array();
     ## @unset($_COOKIE[session_name()]);
     session_destroy();
-    redirect($_SERVER['SCRIPT_NAME'], "Good bye!");
+    Utils::redirect($_SERVER['SCRIPT_NAME'], "Good bye!");
 }
 
 if (isset($_SESSION['logged'])) {
-    if (check_id($_SESSION['id'])) {
-        require_once "./class.students.inc.php";
+    if (Utils::check_id($_SESSION['id'])) {
         $s = new Students;
         $GLOBALS['cur_student'] = $s->get_by_id($_SESSION['id']);
         unset($s);
 
         if (strcmp($GLOBALS['cur_student']['Password'], $_SESSION['Password']) == 0) {
 
-            $tpl = new TemplatePower("./html/index.htm");
-            $tpl->assignInclude("head", "./html/head.htm");
-            $tpl->assignInclude("foot", "./html/foot.htm");
+            $tpl = new TemplatePower('index.htm');
+            $tpl->assignInclude('head', __DIR__ . '/../src/templates/head.htm');
+            $tpl->assignInclude('foot', __DIR__ . '/../src/templates/foot.htm');
             $tpl->prepare();
 
             $tpl->newBlock("logged");
@@ -37,7 +40,6 @@ if (isset($_SESSION['logged'])) {
             if ($GLOBALS['cur_student']['Task_id'] == -1) {
                 $tpl->assign("project", "Не выбран");
             } else {
-                require_once "./class.problems.inc.php";
                 $p = new Problems;
                 $cur_task = $p->get_by_id($GLOBALS['cur_student']['Task_id']);
                 $tpl->assign("project",
@@ -51,9 +53,7 @@ if (isset($_SESSION['logged'])) {
 
 
             if (isset($_GET['join'])) {
-                if (check_id($_GET['join'])) {
-                    require_once "./class.problems.inc.php";
-                    require_once "./class.students.inc.php";
+                if (Utils::check_id($_GET['join'])) {
                     $p = new Problems;
                     $s = new Students;
 
@@ -62,17 +62,15 @@ if (isset($_SESSION['logged'])) {
 
                     if (($cur_problem['TeamSize'] - count($team) > 0) && ($GLOBALS['cur_student']['Success'] != 1)) {
                         $s->chtask($GLOBALS['cur_student']['id'], $cur_problem['id']);
-                        redirect($_SERVER['SCRIPT_NAME'], "Задача выбрана");
+                        Utils::redirect($_SERVER['SCRIPT_NAME'], "Задача выбрана");
                     } else {
-                        redirect($_SERVER['SCRIPT_NAME'], "Уже нельзя");
+                        Utils::redirect($_SERVER['SCRIPT_NAME'], "Уже нельзя");
                     }
                 } else {
-                    redirect($_SERVER['SCRIPT_NAME'], "Wrong argument");
+                    Utils::redirect($_SERVER['SCRIPT_NAME'], "Wrong argument");
                 }
             } else if (isset($_GET['more'])) {
-                if (check_id($_GET['more'])) {
-                    require_once "./class.problems.inc.php";
-                    require_once "./class.students.inc.php";
+                if (Utils::check_id($_GET['more'])) {
                     $p = new Problems;
                     $s = new Students;
 
@@ -101,12 +99,10 @@ if (isset($_SESSION['logged'])) {
                         $tpl->assign("url_join", $_SERVER['SCRIPT_NAME'] . "?join=" . $cur_problem['id']);
                     }
                 } else {
-                    redirect($_SERVER['SCRIPT_NAME'], "Wrong argument");
+                    Utils::redirect($_SERVER['SCRIPT_NAME'], "Wrong argument");
                 }
             } else {
                 $tpl->newBlock("table");
-                require_once "./class.problems.inc.php";
-                require_once "./class.students.inc.php";
                 $p = new Problems;
                 $s = new Students;
 
@@ -130,19 +126,18 @@ if (isset($_SESSION['logged'])) {
             }
             $tpl->printToScreen();
         } else {
-            redirect($_SERVER['SCRIPT_NAME'] . "?logout", "Bad cookies");
+            Utils::redirect($_SERVER['SCRIPT_NAME'] . "?logout", "Bad cookies");
         }
     }
 } else if (isset($_POST['login'])) ## Authorization
 {
-    $t = new TemplatePower("./html/redirect.htm");
+    $t = new TemplatePower('redirect.htm');
     $t->prepare();
     $t->assign("url", $_SERVER['SCRIPT_NAME']);
 
-    require_once "./class.students.inc.php";
     $s = new Students;
 
-    if (check_id($_POST['id'])) {
+    if (Utils::check_id($_POST['id'])) {
         $GLOBALS['cur_student'] = $s->get_by_id($_POST['id']);
 
         if (strcmp($GLOBALS['cur_student']['Password'], md5($_POST['Password'])) == 0) {
@@ -156,15 +151,14 @@ if (isset($_SESSION['logged'])) {
         }
         $t->printToScreen();
     } else {
-        redirect($_SERVER['SCRIPT_NAME'], "Bad request");
+        Utils::redirect($_SERVER['SCRIPT_NAME'], "Bad request");
     }
 } else {
-    $t = new TemplatePower("./html/index.htm");
-    $t->assignInclude("head", "./html/head.htm");
-    $t->assignInclude("foot", "./html/foot.htm");
+    $t = new TemplatePower('index.htm');
+    $t->assignInclude('head', __DIR__ . '/../src/templates/head.htm');
+    $t->assignInclude('foot', __DIR__ . '/../src/templates/foot.htm');
     $t->prepare();
 
-    require_once "./class.students.inc.php";
     $s = new Students;
     $students = $s->get_all();
     unset($s);
@@ -179,4 +173,3 @@ if (isset($_SESSION['logged'])) {
     }
     $t->printToScreen();
 }
-?>
