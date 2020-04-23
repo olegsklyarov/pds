@@ -18,9 +18,9 @@ class Constants
 
     const DATABASE_SETTINGS = [
         self::ENVIRONMENT_DEVELOPMENT => [
-            self::DATABASE_PROPERTY_USER => 'homestead',
-            self::DATABASE_PROPERTY_PASSWORD => 'secret',
-            self::DATABASE_PROPERTY_NAME => 'homestead',
+            self::DATABASE_PROPERTY_USER => 'task_select',
+            self::DATABASE_PROPERTY_PASSWORD => 'task_select',
+            self::DATABASE_PROPERTY_NAME => 'task_select',
             self::DATABASE_PROPERTY_HOST => self::DATABASE_LOCALHOST,
         ],
         self::ENVIRONMENT_PRODUCTION => [
