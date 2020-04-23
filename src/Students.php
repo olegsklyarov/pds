@@ -1,31 +1,13 @@
 <?php
 
-require_once "connect.php";
-require_once "func.php";
+namespace App;
 
-define("student_get_students", "students");    ## Пользователь просит показать данные странички "Edit students"
-define("student_post_success", "sps");    ## Передаются значения полей формы "Поставить зачет"
-define("student_get_success", "sgs");    ## Указание на вывод формы "Поставить зачет"
-
-define("student_post_not_success", "spns");    ## Пользователь отправил значения формы "Поставить незачет"
-define("student_get_not_success", "sgns");    ## Пользователь попросил вывести форму "Поставить незачет"
-
-define("student_get_add", "sga");    ## Пользователь попросил вывести форму для добавления студента
-define("student_post_add", "spa");    ## Пришли данные от формы "Добавить студента"
-
-define("student_get_delete", "sgd");
-define("student_post_delete", "spd");
-
-define("student_get_edit", "sge");
-define("student_post_edit", "spe");
-
-class Students
+final class Students
 {
     private function mysqlselect($str)
     {
-        return Connection::getInstance()->select(sql_query_table(
-            $str,
-            Constants::DATABASE_TABLE_STUDENT));
+        return Connection::getInstance()->select(Utils::sql_query_table(
+            $str, Constants::DATABASE_TABLE_STUDENT));
     }
 
     public function get_all()
@@ -45,7 +27,7 @@ class Students
 
     public function mysqlupdate($str)
     {
-        Connection::getInstance()->update(sql_query_table(
+        Connection::getInstance()->update(Utils::sql_query_table(
             $str,
             Constants::DATABASE_TABLE_STUDENT));
     }

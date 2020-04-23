@@ -1,18 +1,15 @@
 <?php
-require_once "constants.php";
 
+namespace App;
 
-class Connection
+final class Connection
 {
-    /** @var Connection */
-    private static $instance;
-
-    /** @var mysqli */
-    private $mysqli;
+    private static ?Connection $instance = null;
+    private \mysqli $mysqli;
 
     private function __construct()
     {
-        $this->mysqli = new mysqli(
+        $this->mysqli = new \mysqli(
             Constants::getDatabaseHost(),
             Constants::getDatabaseUser(),
             Constants::getDatabasePassword(),
@@ -28,50 +25,33 @@ class Connection
         }
     }
 
-    /**
-     * @return Connection
-     */
-    public static function getInstance()
+    public function __destruct()
     {
-        if (!self::$instance) {
+        $this->mysqli->close();
+    }
+
+    public static function getInstance(): Connection
+    {
+        if (self::$instance === null) {
             self::$instance = new Connection();
         }
 
         return self::$instance;
     }
 
-
-    /**
-     * @param string $query
-     *
-     * @return array
-     */
-    public function select(string $query)
+    public function select(string $query): array
     {
-        /** @var mysqli_result $result */
         $result = $this->mysqli->query($query) or die("MySQL error during SELECT: {$this->mysqli->error}");
-        $data = [];
-        while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
-        }
-        $result->close();
-
-        return $data;
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
 
-    /**
-     * @param string $query
-     */
     public function update(string $query)
     {
         $this->mysqli->query($query) or die("MySQL error during UPDATE: {$this->mysqli->error}");
     }
 
 
-    /**
-     * @param string $query
-     */
     public function multi_query(string $query)
     {
         if ($this->mysqli->multi_query($query)) {
